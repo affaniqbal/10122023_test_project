@@ -1,9 +1,12 @@
 // common.js
-function displayDateTime() {
-    const currentDate = new Date();
-    const dateString = currentDate.toLocaleDateString();
-    const timeString = currentDate.toLocaleTimeString();
-    document.getElementById('date-time').innerHTML = `Date: ${dateString}, Time: ${timeString}`;
+function loadNote(notePage) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', `notes/${notePage}`);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            const noteContent = xhr.responseText;
+            document.getElementById('note-content').innerHTML = noteContent;
+        }
+    };
+    xhr.send();
 }
-
-window.onload = displayDateTime;

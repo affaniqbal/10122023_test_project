@@ -1,23 +1,19 @@
-// common.js
-function loadCommonElements(notePage) {
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', `notes/${notePage}`);
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-            const noteContent = xhr.responseText;
-            const div = document.getElementById('common-elements');
-            div.innerHTML = noteContent;
-            displayDateTime();
-        }
-    };
-    xhr.send();
-}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Personal Notes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>My Notes</h1>
+    <ul>
+        <li><a href="javascript:void(0)" onclick="loadNote('note1.html')">Note 1 Title</a></li>
+        <li><a href="javascript:void(0)" onclick="loadNote('note2.html')">Note 2 Title</a></li>
+        <!-- Add more list items for additional notes -->
+    </ul>
 
-function displayDateTime() {
-    const currentDate = new Date();
-    const dateString = currentDate.toLocaleDateString();
-    const timeString = currentDate.toLocaleTimeString();
-    document.getElementById('date-time').innerHTML = `Date: ${dateString}, Time: ${timeString}`;
-}
+    <div id="note-content"></div>
 
-window.onload = displayDateTime;
+    <script src="common.js"></script>
+</body>
+</html>
